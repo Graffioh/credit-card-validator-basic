@@ -27,7 +27,7 @@ int main()
     conversioneStringToInt(lunghezzaNumCarta, numberArray, s_nCartaInput);
 
     // Algoritmo di Luhn
-    for (int i = lunghezzaNumCarta - 2; i >= 0; i = i - 2) // double every single digit from right to left
+    for (int i = lunghezzaNumCarta - 2; i >= 0; i = i - 2) // double every second digit from right to left
     {
 
         double1 = numberArray[i] * 2;
@@ -76,10 +76,9 @@ int main()
     {
         std::cout << "Numero carta INVALIDO" << std::endl;
     }
-}
-
 return 0;
 }
+
 
 void conversioneStringToInt(int lunghezzaNumCarta, int numberArray[], std::string s_nCartaInput)
 {
