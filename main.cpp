@@ -27,9 +27,8 @@ int main()
     conversioneStringToInt(lunghezzaNumCarta, numberArray, s_nCartaInput);
 
     // Algoritmo di Luhn
-    for (int i = lunghezzaNumCarta - 2; i >= 0; i = i - 2) // double every second digit from right to left
+    for (int i = lunghezzaNumCarta - 1; i >= 0; i = i - 2) // double every second digit from right to left
     {
-
         double1 = numberArray[i] * 2;
 
         if (double1 > 9)
