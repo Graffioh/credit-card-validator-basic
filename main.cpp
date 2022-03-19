@@ -1,8 +1,8 @@
 #include <iostream>
+#include <string>
+#include "inputValidation.h"
 
-// ALGORITMO DI LUHN https://www.geeksforgeeks.org/program-credit-card-number-validation/
-
-// DA IMPLEMENTARE ROBA (mettere qualche controllo,implementare classi ma non so se utile)
+// LUHN ALGORITHM https://www.geeksforgeeks.org/program-credit-card-number-validation/
 
 void conversioneStringToInt(int lunghezzaNumCarta, int numberArray[], std::string s_nCartaInput);
 void conversioneIntToString(int double1, int &num1Tmp, int &num2Tmp);
@@ -12,29 +12,32 @@ int main()
     std::string s_nCartaInput;
     int numberArray[30];
     int arrayStep2[30];
-
+    char cControl;
     int double1, num1Tmp, num2Tmp;
     int j = 0, sum1 = 0, sum2 = 0, finalSum = 0;
 
-    std::cout << "Inserisci i numeri della tua carta di credito: ";
+    do
+    {
+        getInput(s_nCartaInput, "Insert your credit card number: ");
 
-    std::cin >> s_nCartaInput;
+        std::cout << "Your credit card number is: " << s_nCartaInput << std::endl;
 
-    std::cout << "Il numero di carta inserito e': " << s_nCartaInput << "\n";
+        getInput(cControl, "Is it correct? Yes(y) or Not(n): ");
+    }while(cControl=='n');
+
 
     int lunghezzaNumCarta = s_nCartaInput.length();
 
     conversioneStringToInt(lunghezzaNumCarta, numberArray, s_nCartaInput);
 
-    // Algoritmo di Luhn
+    // Luhn Algorithm
     for (int i = lunghezzaNumCarta - 1; i >= 0; i = i - 2) // double every second digit from right to left
     {
+        // step 1
         double1 = numberArray[i] * 2;
 
         if (double1 > 9)
         {
-            // bisogna sommare le due cifre per ottenere il numero a cifra singola da utilizzare per lo step 2
-            // provo a convertire il numero in un array di char,per poi ri-convertire l'array di char in un array di integers
             conversioneIntToString(double1, num1Tmp, num2Tmp);
 
             arrayStep2[j] = num1Tmp + num2Tmp;
@@ -42,19 +45,19 @@ int main()
         }
         else
         {
-            // conservare il numero a cifra singola da utilizzare per lo step 2
+            // Number for step 2
             arrayStep2[j] = double1;
             j++;
         }
     }
 
-    // somma step 2
+    // sum step 2
     for (int i = 0; i <= j; i++)
     {
         sum1 = sum1 + arrayStep2[i];
     }
 
-    // somma step 3
+    // sum step 3
     for (int i = lunghezzaNumCarta - 1; i >= 0; i--)
     {
         if (i % 3 == 0)
@@ -63,17 +66,17 @@ int main()
         }
     }
 
-    // somma finale step 4
+    // final sum step 4
     finalSum = sum1 + sum2;
 
     // step 5
     if (finalSum % 10 == 0)
     {
-        std::cout << "Numero carta VALIDO" << std::endl;
+        std::cout << "INVALID credit card number" << std::endl;
     }
     else
     {
-        std::cout << "Numero carta INVALIDO" << std::endl;
+        std::cout << "INVALID credit card number" << std::endl;
     }
 return 0;
 }
@@ -81,10 +84,10 @@ return 0;
 
 void conversioneStringToInt(int lunghezzaNumCarta, int numberArray[], std::string s_nCartaInput)
 {
-    // Conversione da string a int tramite ascii
+    // conversion from string to int with ASCII
     for (int i = 0; i < lunghezzaNumCarta; i++)
     {
-        numberArray[i] = (int)s_nCartaInput[i] - 48; //-48 perchè in ascii lo 0 sarebbe 48 e il 9 sarebbe 57 quindi dobbiamo rimanere in quel range
+        numberArray[i] = (int)s_nCartaInput[i] - 48; //-48 cause 0 in ascii is 48 and 9 is 57 so we need to stay in this range
     }
 }
 
