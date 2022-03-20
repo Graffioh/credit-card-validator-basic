@@ -62,7 +62,7 @@ int main()
     {
         for (int i = lunghezzaNumCarta - 1; i >= 0; i--)
         {
-            if (i % 2 != 0) // We need to check if is even because array starts at 0,so the odd places are the even places.
+            if (i % 2 != 0) 
             {
                 sum2 = sum2 + numberArray[i];
             }
