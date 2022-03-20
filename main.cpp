@@ -31,7 +31,7 @@ int main()
     conversioneStringToInt(lunghezzaNumCarta, numberArray, s_nCartaInput);
 
     // Luhn Algorithm
-    for (int i = lunghezzaNumCarta - 1; i >= 0; i = i - 2) // double every second digit from right to left
+    for (int i = lunghezzaNumCarta - 2; i >= 0; i = i - 2) // double every second digit from right to left
     {
         // step 1
         double1 = numberArray[i] * 2;
@@ -52,17 +52,30 @@ int main()
     }
 
     // sum step 2
-    for (int i = 0; i <= j; i++)
+    for (int i = 0; i < j; i++)
     {
         sum1 = sum1 + arrayStep2[i];
     }
 
     // sum step 3
-    for (int i = lunghezzaNumCarta - 1; i >= 0; i--)
+    if (lunghezzaNumCarta % 2 == 0)
     {
-        if (i % 3 == 0)
+        for (int i = lunghezzaNumCarta - 1; i >= 0; i--)
         {
-            sum2 = sum2 + numberArray[i];
+            if (i % 2 != 0) // We need to check if is even because array starts at 0,so the odd places are the even places.
+            {
+                sum2 = sum2 + numberArray[i];
+            }
+        }
+    }
+    else
+    {
+        for (int i = lunghezzaNumCarta - 1; i >= 0; i--)
+        {
+            if (i % 2 == 0) // We need to check if is even because array starts at 0,so the odd places are the even places.
+            {
+                sum2 = sum2 + numberArray[i];
+            }
         }
     }
 
@@ -72,7 +85,7 @@ int main()
     // step 5
     if (finalSum % 10 == 0)
     {
-        std::cout << "INVALID credit card number" << std::endl;
+        std::cout << "VALID credit card number" << std::endl;
     }
     else
     {

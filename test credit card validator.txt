@@ -1,0 +1,15 @@
+371449635398431 // i=14 the first odd position from right to left
+
+step1: 3*2 8*2 3*2 3*2 9*2 4*2 7*2
+step2: 6+7+6+6+9+8+5 = 47
+step3: 1+4+9+5+6+4+1+3 = 33
+step4: 50+33 = 80 valid
+
+3530111333300000 // i=15 the first odd position from right to left
+
+step1: 0*2 0*2 3*2 3*2 1*2 1*2 3*2 3*2
+step2: 6+6+2+2+6+6 = 28
+step3: 0+0+0+3+3+1+0+5 = 12
+step4: 28*12 = 40
+
+file used to fix a problem, fixed but in a inefficient way
